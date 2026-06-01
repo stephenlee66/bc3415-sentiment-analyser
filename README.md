@@ -1,128 +1,206 @@
-# Retail Reviews Sentiment Analyzer
+# Retail Reviews Sentiment Analyser
 
-A Streamlit web application demo for analyzing customer review sentiment using a fine-tuned DeBERTa model.
+A Streamlit web app that predicts customer review sentiment using a fine-tuned DeBERTa model.
+
+The app supports CSV upload, batch sentiment prediction, confidence scores, summary statistics, visualisation and CSV export.
+
+---
 
 ## Features
 
-✅ **CSV Upload** - Upload files with customer reviews
-✅ **Batch Prediction** - Analyze multiple reviews at once
-✅ **Confidence Scores** - Get prediction confidence percentages
-✅ **Interactive UI** - User-friendly interface with progress tracking
-✅ **CSV Export** - Download results with predictions
-✅ **Summary Statistics** - View sentiment distribution and metrics
-✅ **Visualization** - Bar charts for sentiment analysis
+- Upload a CSV file containing customer reviews
+- Select the review text column
+- Predict sentiment as `negative`, `neutral`, or `positive`
+- Display prediction confidence scores
+- View summary statistics and sentiment distribution charts
+- Download prediction results as a CSV file
+
+---
+
+## Project Structure
+
+```text
+project/
+├── README.md
+├── app.py
+├── sentiment_analysis.ipynb
+├── Womens Clothing E-Commerce Reviews.csv
+├── models/
+│   ├── best_model_info.json
+│   ├── logistic_regression_model.pkl
+│   ├── naive_bayes_model.pkl
+│   ├── tfidf_vectorizer.pkl
+│   └── bert_model/
+│       ├── config.json
+│       ├── model.safetensors          # download separately
+│       ├── tokenizer_config.json
+│       ├── tokenizer.json
+│       ├── thresholds.json
+│       └── label_map.json
+├── results/
+└── app_test_data/
+```
+
+---
 
 ## Installation
 
-### Prerequisites
+### 1. Clone or download this repository
 
-- **CPU only users:** Python 3.8 or above
-- **GPU users (NVIDIA):** Python 3.10 or 3.11 recommended
+```bash
+git clone https://github.com/stephenlee66/bc3415-sentiment-analyser.git
+cd bc3415-sentiment-analyser
+```
 
-### Step 1: Install Dependencies
+### 2. Install required packages
 
-Install the required packages to run the Streamlit app:
+For running the Streamlit app:
 
 ```bash
 pip install streamlit pandas numpy torch transformers
 ```
 
-Optional if you also want to run the Jupyter notebook (sentiment_analysis.ipynb):
-
-Non-GPU users might have to switch to lighter versions of bert e.g. distilbert
+Optional packages for running the Jupyter notebook file:
 
 ```bash
-pip install pandas numpy nltk wordcloud scikit-learn torch transformers matplotlib seaborn tqdm joblib sentencepiece tiktoken protobuf
+pip install nltk wordcloud scikit-learn matplotlib seaborn tqdm joblib sentencepiece tiktoken protobuf
 ```
 
-For GPU Users:
+---
 
-Use Python 3.10 or 3.11 in a virtual environment and install the CUDA-enabled version of PyTorch for GPU acceleration.
+## Model File Download
 
-```bash
-pip install torch --index-url https://download.pytorch.org/whl/cu128
-```
+The trained DeBERTa weight file is not included in this repository because it is too large for GitHub.
 
-### Step 2: Verify Project Directory & Model File Download
+Download `model.safetensors` from Google Drive:
 
-Due to Blackboard upload size limitations, the trained model file model.safetensors is hosted separately at:
+```text
+# Retail Reviews Sentiment Analyser
 
-https://drive.google.com/file/d/19urlf53FooHujz5r6QyNGzT-g1ewBA7Z/view?usp=sharing
+A Streamlit web app that predicts customer review sentiment using a fine-tuned DeBERTa model.
 
-Please download model.safetensors and place it in the folder below before running the application.
+The app supports CSV upload, batch sentiment prediction, confidence scores, summary statistics, visualisation, and CSV export.
 
-```
+---
+
+## Features
+
+- Upload a CSV file containing customer reviews
+- Select the review text column
+- Predict sentiment as `negative`, `neutral`, or `positive`
+- Display prediction confidence scores
+- View summary statistics and sentiment distribution charts
+- Download prediction results as a CSV file
+
+---
+
+## Project Structure
+
+```text
 project/
-├── README.md                               # usage guide
-├── app.py                                  # streamlit app (run this only)
-├── sentiment_analysis.ipynb                # full ml pipeline
-├── Womens Clothing E-Commerce Reviews.csv  # training data
-├── models/                                 # model storage
+├── README.md
+├── app.py
+├── sentiment_analysis.ipynb
+├── Womens Clothing E-Commerce Reviews.csv
+├── models/
+│   ├── best_model_info.json
+│   ├── logistic_regression_model.pkl
+│   ├── naive_bayes_model.pkl
+│   ├── tfidf_vectorizer.pkl
 │   └── bert_model/
 │       ├── config.json
-│       ├── model.safetensors
+│       ├── model.safetensors          # download separately
 │       ├── tokenizer_config.json
 │       ├── tokenizer.json
 │       ├── thresholds.json
 │       └── label_map.json
-├── results/                                # visuals from ipynb
-├── app_test_data/                          # sample test data
-├── Stephen_Demo.mp4                        # demo vid
+├── results/
+└── app_test_data/
 ```
 
-### Step 3: Change to Project Directory
+---
 
-Open Terminal or VS Code terminal and navigate to your project folder:
+## Installation
+
+### 1. Clone or download this repository
 
 ```bash
-cd /path/to/project                         # your own file path
+git clone https://github.com/stephenlee66/bc3415-sentiment-analyser.git
+cd bc3415-sentiment-analyser
 ```
-Replace /path/to/project with your actual folder path.
 
-To confirm you are in the right folder:
+### 2. Install required packages
+
+For running the Streamlit app:
 
 ```bash
-ls
+pip install streamlit pandas numpy torch transformers
 ```
 
-You should see files like README.md, app.py, etc.
+Optional packages for running the Jupyter notebook:
 
-### Step 4: Run the App
+```bash
+pip install nltk wordcloud scikit-learn matplotlib seaborn tqdm joblib sentencepiece tiktoken protobuf
+```
+
+---
+
+## Model File Download
+
+The trained DeBERTa weight file is not included in this repository because it is too large for GitHub.
+
+Download `model.safetensors` from Google Drive:
+
+```text
+https://drive.google.com/file/d/19urlf53FooHujz5r6QyNGzT-g1ewBA7Z/view?usp=sharing
+```
+
+After downloading, place the file here:
+
+```text
+models/bert_model/model.safetensors
+```
+
+The final path must be:
+
+```text
+models/bert_model/model.safetensors
+```
+
+Without this file, the app will not be able to load the fine-tuned DeBERTa model.
+
+---
+
+## Run the App
+
+From the project folder, run:
 
 ```bash
 streamlit run app.py
 ```
 
-## Usage Guide
+The app will open in your browser.
 
-### Step 1: Upload CSV File
+---
 
-1. Click "Browse files" button
-2. Select your CSV file containing reviews
-3. The file will be previewed automatically
+## Usage
 
-### Step 2: Select Text Column
+1. Upload a CSV file containing customer reviews.
+2. Select the column that contains the review text.
+3. Choose the output format:
+   - Add prediction columns to the original CSV
+   - Export only the prediction results
+4. Click **Analyze Sentiment**.
+5. Review the sentiment distribution and confidence scores.
+6. Download the results as a CSV file.
 
-1. Choose the column containing review text from dropdown
-2. Select output format preference:
-   - **Add columns to original CSV**: Adds sentiment columns to your data
-   - **New CSV with only results**: Creates a clean output with just results
+---
 
-### Step 3: Analyze Sentiment
+## Input CSV Format
 
-1. Click "🚀 Analyze Sentiment" button
-2. Wait for processing (progress bar will show)
-3. View results and statistics
+Your CSV should contain at least one text column.
 
-### Step 4: Download Results
-
-1. Review the sentiment distribution and statistics
-2. Click "📥 Download CSV with Predictions"
-3. Save the output file
-
-## CSV Format
-
-Your input CSV should have at least one column with text:
+Example:
 
 ```csv
 Review Text,Rating,Product
@@ -131,14 +209,18 @@ Review Text,Rating,Product
 "It's okay, nothing special.",3,Jeans
 ```
 
+---
+
 ## Output Format
 
-The app adds two columns to your data:
+The app adds the following columns:
 
-- **Predicted_Sentiment**: negative, neutral or positive
-- **Confidence (%)**: Model confidence percentage (0-100)
+| Column | Description |
+|---|---|
+| `Predicted_Sentiment` | Predicted sentiment: negative, neutral, or positive |
+| `Confidence (%)` | Model confidence score from 0 to 100 |
 
-Example output:
+Example:
 
 ```csv
 Review Text,Rating,Predicted_Sentiment,Confidence (%)
@@ -147,15 +229,152 @@ Review Text,Rating,Predicted_Sentiment,Confidence (%)
 "It's okay.",3,neutral,78.5
 ```
 
+---
+
 ## Troubleshooting
 
-### Model Not Found Error
+### Model file not found
 
-**Solution:** Make sure the trained model files are present in `models/bert_model/`.
+Make sure `model.safetensors` has been downloaded and placed in:
+
+```text
+models/bert_model/model.safetensors
+```
+
+### App does not start
+
+Check that you are inside the project folder before running:
+
+```bash
+streamlit run app.py
+```
+
+You can confirm your current folder contains `app.py` by running:
+
+```bash
+ls
+```
+
+---
 
 ## Credits
 
-Built by Stephen with ❤️ using:
+Built by Stephen using:
+
 - Streamlit
-- HuggingFace Transformers
+- Hugging Face Transformers
 - PyTorch
+- DeBERTa
+
+```
+
+After downloading, place the file here:
+
+```text
+models/bert_model/model.safetensors
+```
+
+The final path must be:
+
+```text
+models/bert_model/model.safetensors
+```
+
+Without this file, the app will not be able to load the fine-tuned DeBERTa model.
+
+---
+
+## Run the App
+
+From the project folder, run:
+
+```bash
+streamlit run app.py
+```
+
+The app will open in your browser.
+
+---
+
+## Usage
+
+1. Upload a CSV file containing customer reviews.
+2. Select the column that contains the review text.
+3. Choose the output format:
+   - Add prediction columns to the original CSV
+   - Export only the prediction results
+4. Click **Analyze Sentiment**.
+5. Review the sentiment distribution and confidence scores.
+6. Download the results as a CSV file.
+
+---
+
+## Input CSV Format
+
+Your CSV should contain at least one text column.
+
+Example:
+
+```csv
+Review Text,Rating,Product
+"Love this dress! Perfect fit.",5,Summer Dress
+"Poor quality material.",2,Cotton Shirt
+"It's okay, nothing special.",3,Jeans
+```
+
+---
+
+## Output Format
+
+The app adds the following columns:
+
+| Column | Description |
+|---|---|
+| `Predicted_Sentiment` | Predicted sentiment: negative, neutral, or positive |
+| `Confidence (%)` | Model confidence score from 0 to 100 |
+
+Example:
+
+```csv
+Review Text,Rating,Predicted_Sentiment,Confidence (%)
+"Love this dress!",5,positive,96.8
+"Poor quality.",2,negative,89.3
+"It's okay.",3,neutral,78.5
+```
+
+---
+
+## Troubleshooting
+
+### Model file not found
+
+Make sure `model.safetensors` has been downloaded and placed in:
+
+```text
+models/bert_model/model.safetensors
+```
+
+### App does not start
+
+Check that you are inside the project folder before running:
+
+```bash
+streamlit run app.py
+```
+
+You can confirm your current folder contains `app.py` by running:
+
+```bash
+ls
+```
+
+---
+
+## Credits
+
+Built by Stephen using:
+
+- Streamlit
+- Hugging Face Transformers
+- PyTorch
+- DeBERTa
