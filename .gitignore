@@ -1,0 +1,8 @@
+*.mp4
+*.docx
+
+models/bert_model/model.safetensors
+
+.DS_Store
+.ipynb_checkpoints/
+.vscode/
