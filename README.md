@@ -8,7 +8,7 @@ The app supports CSV upload, batch sentiment prediction, confidence scores, summ
 
 - Upload a CSV file containing customer reviews
 - Select the review text column
-- Predict sentiment as `negative`, `neutral`, or `positive`
+- Predict sentiment as `negative`, `neutral` or `positive`
 - Display prediction confidence scores
 - View summary statistics and sentiment distribution charts
 - Download prediction results as a CSV file
