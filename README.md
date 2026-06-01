@@ -66,7 +66,7 @@ The trained DeBERTa weight file is not included in this repository because it is
 
 Download `model.safetensors` from the Google Drive link below:
 
-[Download File from Google Drive](https://drive.google.com/file/d/19urlf53FooHujz5r6QyNGzT-g1ewBA7Z/view?usp=sharing)
+[DeBERTa Model File](https://drive.google.com/file/d/19urlf53FooHujz5r6QyNGzT-g1ewBA7Z/view?usp=sharing)
 
 After downloading, place the file here:
 
@@ -132,7 +132,7 @@ Review Text,Rating,Predicted_Sentiment,Confidence (%)
 
 ### Model file not found
 
-Make sure `model.safetensors` has been downloaded and placed in:
+Make sure `model.safetensors` has been downloaded and placed in with correct file name:
 
 ```text
 models/bert_model/model.safetensors
