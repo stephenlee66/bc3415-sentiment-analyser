@@ -9,7 +9,7 @@ from io import BytesIO
 
 # Page configuration
 st.set_page_config(
-    page_title="E-Commerce Sentiment Analyzer",
+    page_title="E-Commerce Sentiment Analyser",
     page_icon="🛍️",
     layout="wide"
 )
@@ -157,7 +157,7 @@ def convert_df_to_csv(df):
 
 def main():
     # Title and description
-    st.title("🛍️ Retail Review Sentiment Analyzer")
+    st.title("🛍️ Retail Review Sentiment Analyser")
     st.markdown("""
     This app uses a fine-tuned **NLP** model to predict sentiment from customer reviews.
     Upload a CSV file with reviews, and get sentiment predictions with confidence scores!
@@ -185,7 +185,7 @@ def main():
         st.markdown("""
         1. Upload CSV file
         2. Select text column
-        3. Click 'Analyze Sentiment'
+        3. Click 'Analyse Sentiment'
         4. Download results
         """)
     
@@ -238,8 +238,8 @@ def main():
                     help="Choose how to format the output"
                 )
             
-            # Analyze button
-            if st.button("🚀 Analyze Sentiment", type="primary"):
+            # Analyse button
+            if st.button("🚀 Analyse Sentiment", type="primary"):
                 
                 # Validate text column
                 if text_column not in df.columns:
